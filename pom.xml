@@ -16,6 +16,8 @@
         <testng.version>7.11.0</testng.version>
         <log4j.version>2.24.3</log4j.version>
         <jackson.version>2.18.2</jackson.version>
+        <slf4j.version>2.0.12</slf4j.version>
+        <mongodb.version>4.11.1</mongodb.version>
     </properties>
 
     <build>
@@ -47,28 +49,40 @@
             <version>${testng.version}</version>
         </dependency>
 
+        <!-- Log4j Api-->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
             <version>${log4j.version}</version>
         </dependency>
 
+        <!-- Log4j Core -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
             <version>${log4j.version}</version>
         </dependency>
 
+        <!-- Jackson Databind -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.version}</version>
         </dependency>
+
+        <!-- SLF4J Simple -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <version>2.0.12</version>
+            <version>${slf4j.version}</version>
             <scope>test</scope>
+        </dependency>
+
+        <!-- MongoDB Driver -->
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver-sync</artifactId>
+            <version>${mongodb.version}</version>
         </dependency>
     </dependencies>
 
