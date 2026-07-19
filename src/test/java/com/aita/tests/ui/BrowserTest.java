@@ -1,11 +1,7 @@
 package com.aita.tests.ui;
 
-import com.aita.ai.AIClient;
-import com.aita.ai.AIRequest;
-import com.aita.ai.AIResponse;
 import com.aita.assertions.FrameworkAssertions;
 import com.aita.config.ConfigManager;
-import com.aita.loggers.FrameworkLogger;
 import com.aita.pages.LoginPage;
 import com.aita.tests.base.BaseTest;
 import org.testng.annotations.Test;
