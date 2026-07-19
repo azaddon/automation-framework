@@ -8,6 +8,7 @@ import com.aita.builder.AutomationContextBuilder;
 import com.aita.context.AutomationContext;
 import com.aita.context.FrameworkContext;
 import com.aita.loggers.FrameworkLogger;
+import com.aita.loggers.LogCollector;
 import com.aita.utils.ScreenshotManager;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -16,6 +17,7 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult result){
+        LogCollector.clear();
         FrameworkLogger.info("Started : "+result.getMethod().getMethodName());
     }
 
@@ -31,18 +33,21 @@ public class TestListener implements ITestListener {
                 "FAILED : " + result.getMethod().getMethodName()
         );
 
-        AutomationContext context =
-                AutomationContextBuilder.build(result);
-
         String screenshot = ScreenshotManager.capture(BrowserManager.getPage(), result.getName());
         FrameworkContext.getContext().setScreenshotPath(screenshot);
+
+        AutomationContext context = AutomationContextBuilder.build(result);
+        context.setScreenshotBase64(ScreenshotManager.toBase64(screenshot));
+
         AIRequest request =
                 new AIRequest(context);
 
-        AIResponse response =
-                AIClient.analyze(request);
-
-        FrameworkLogger.info(response.toString());
+        try {
+            AIResponse response = AIClient.analyze(request);
+            FrameworkLogger.info(response.toString());
+        } catch (RuntimeException e) {
+            FrameworkLogger.error("AI failure analysis unavailable: " + e.getMessage());
+        }
     }
 
     @Override

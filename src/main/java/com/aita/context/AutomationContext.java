@@ -1,5 +1,7 @@
 package com.aita.context;
 
+import java.util.List;
+
 public class AutomationContext {
 
     private String testName;
@@ -11,12 +13,13 @@ public class AutomationContext {
     private String locator;
     private String error;
     private String stackTrace;
-    private String logs;
+    private List<String> logs;
     private long executionTime;
     private String frameworkVersion;
     private String playwrightVersion;
     private String timestamp;
     private String screenshotPath;
+    private String screenshotBase64;
     private String videoPath;
 
     public AutomationContext() {
@@ -94,11 +97,11 @@ public class AutomationContext {
         this.stackTrace = stackTrace;
     }
 
-    public String getLogs() {
+    public List<String> getLogs() {
         return logs;
     }
 
-    public void setLogs(String logs) {
+    public void setLogs(List<String> logs) {
         this.logs = logs;
     }
 
@@ -137,10 +140,22 @@ public class AutomationContext {
     public String getScreenshotPath(){
         return screenshotPath;
     }
-    public void setScreenShotPath(String screenshotPath){
-         this.screenshotPath = screenshotPath;
+    public void setScreenshotPath(String screenshotPath) {
+        this.screenshotPath = screenshotPath;
     }
-    
+
+    public String getScreenshotBase64() {
+        return screenshotBase64;
+    }
+
+    public void setScreenshotBase64(String screenshotBase64) {
+        this.screenshotBase64 = screenshotBase64;
+    }
+
+    public String getVideoPath() {
+        return videoPath;
+    }
+
     public void setVideoPath(String videoPath) {
         this.videoPath = videoPath;
     }

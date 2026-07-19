@@ -9,8 +9,8 @@ import java.net.http.HttpResponse;
 
 public class AIClient {
 
-    private static final String URL =
-            "http://localhost:8000/analyze";
+    private static final String DEFAULT_BASE_URL = "http://localhost:8000";
+    private static final String ANALYSIS_PATH = "/api/v1/analysis/failures";
 
     private static final ObjectMapper mapper =
             new ObjectMapper();
@@ -20,9 +20,11 @@ public class AIClient {
         try {
 
             String json = mapper.writeValueAsString(request);
+            String baseUrl = System.getenv().getOrDefault("AI_SERVICE_URL", DEFAULT_BASE_URL);
 
             HttpRequest httpRequest = HttpRequest.newBuilder()
-                    .uri(URI.create(URL)).header("Content-Type", "application/json")
+                    .uri(URI.create(baseUrl + ANALYSIS_PATH))
+                    .header("Content-Type", "application/json")
                     .POST(HttpRequest.BodyPublishers.ofString(json))
                      .build();
 

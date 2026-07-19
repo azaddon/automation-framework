@@ -12,8 +12,8 @@ public class LogCollector {
         logs.add(log);
     }
 
-    public static String getLogs() {
-        return String.join("\n", logs);
+    public static List<String> getLogs() {
+        return List.copyOf(logs);
     }
 
     public static void clear() {

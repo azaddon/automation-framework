@@ -7,10 +7,11 @@ import com.microsoft.playwright.Page;
 public class PlaywrightActions {
 
     protected final Page page;
-    protected static  PlaywrightWait wait;
+    protected final PlaywrightWait wait;
 
     public PlaywrightActions(Page page){
-        this.page =page;
+        this.page = page;
+        this.wait = new PlaywrightWait(page);
     }
     protected void click(Page page,String locator, String stepName) {
         FrameworkLogger.info("[ACTION] " + stepName);
@@ -29,9 +30,9 @@ public class PlaywrightActions {
         page.locator(locator).fill(value);
     }
 
-    public static String getText(Page page,
-                                 String locator,
-                                 String stepName) {
+    public String getText(Page page,
+                          String locator,
+                          String stepName) {
 
         FrameworkLogger.info("STEP : " + stepName);
 
@@ -42,9 +43,9 @@ public class PlaywrightActions {
         return page.locator(locator).textContent();
     }
 
-    public static boolean isVisible(Page page,
-                                    String locator,
-                                    String stepName) {
+    public boolean isVisible(Page page,
+                             String locator,
+                             String stepName) {
 
         FrameworkLogger.info("STEP : " + stepName);
 

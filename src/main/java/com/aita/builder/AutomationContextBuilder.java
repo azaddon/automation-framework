@@ -53,7 +53,7 @@ public class AutomationContextBuilder {
 
         context.setTimestamp(LocalDateTime.now().toString());
 
-        context.setScreenShotPath(FrameworkContext.getContext().getScreenshotPath());
+        context.setScreenshotPath(FrameworkContext.getContext().getScreenshotPath());
 
         context.setVideoPath(FrameworkContext.getContext().getVideoPath());
 
